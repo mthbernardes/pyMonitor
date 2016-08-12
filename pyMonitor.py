@@ -1,4 +1,3 @@
-from IPy import IP
 from socket import gethostbyname
 
 for ip in open('ips.txt'):
@@ -6,7 +5,7 @@ for ip in open('ips.txt'):
     for bkl in open('blacklist.txt'):
         bkl = bkl.strip()
         try:
-            gethostbyname(IP(ip).reverseNames()[0].split('.in')[0]+'.'+bkl)
+            gethostbyname('.'.join(ip.split('.')[::-1])+'.'+bkl)
             print '%s founded on the blacklist %s' %(ip,bkl)
         except:
             pass
